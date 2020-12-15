@@ -1,2 +1,12 @@
 selenium
 allure-pytest
+allure-report
+
+required Product:
+name
+description
+price
+Add to cart
+Remove button
+Shopping carticon
+Bage icon

@@ -9,9 +9,10 @@ class BasePage(object):
     def __init__(self, driver):
         self.driver = driver
         self.timeout = 30
+        self.driver.set_page_load_timeout(60)
         logging.basicConfig(format='%(asctime)s - %(message)s', level=logging.INFO)
 
-    def navigate_to(self, url): #1 url
+    def navigate_to(self, url):
         self.driver.get(url)
 
     def get_title(self):
@@ -40,3 +41,15 @@ class BasePage(object):
         logging.info(message.format(element.text, ','.join(by_locator)))
 
         return element.text
+
+    def get_current_url(self):
+        return self.driver.current_url
+
+        # this function performs click on web element whose locator is passed to it.
+
+    def get_elements_size(self, locator):
+        message = "Get the element size with locator '{}'"
+        logging.info(message.format(','.join(locator)))
+        WebDriverWait(self.driver, self.timeout).until(EC.visibility_of_element_located(locator))
+        elements = self.driver.find_elements(*locator)
+        return len(elements)

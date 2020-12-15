@@ -16,3 +16,6 @@ class LoginPage(BasePage):
         self.enter_text(LoginpageLocators.INPUT_USERNAME, account.username)
         self.enter_text(LoginpageLocators.INPUT_PASSWORD, account.password)
         self.click(LoginpageLocators.BUTTON_LOGIN)
+
+    def get_error_message(self):
+        return self.get_text(LoginpageLocators.LABEL_ERROR)

@@ -6,3 +6,4 @@ class LoginpageLocators:
     INPUT_USERNAME = (By.ID, 'user-name')
     INPUT_PASSWORD = (By.ID, 'password')
     BUTTON_LOGIN = (By.ID, 'login-button')
+    LABEL_ERROR = (By.XPATH, '//h3[@data-test="error"]')
