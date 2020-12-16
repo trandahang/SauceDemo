@@ -35,11 +35,10 @@ class BasePage(object):
         element.clear()
         element.send_keys(text)
 
-    def get_text(self, by_locator):
-        element = WebDriverWait(self.driver, self.timeout).until(EC.visibility_of_element_located(by_locator))
+    def get_text(self, by_locator, timeout = 60):
+        element = WebDriverWait(self.driver, timeout).until(EC.visibility_of_element_located(by_locator))
         message = "Get text '{}' from the element with the locator '{}'"
         logging.info(message.format(element.text, ','.join(by_locator)))
-
         return element.text
 
     def get_current_url(self):
