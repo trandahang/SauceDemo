@@ -9,7 +9,7 @@ class Utility:
         try:
             return os.environ['BROWSER']
         except KeyError:
-            return 'ff'
+            return 'chrome'
 
 
     def read_csv(self, fileName):
