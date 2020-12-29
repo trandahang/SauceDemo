@@ -1,6 +1,7 @@
 import csv
 import json
 import os
+import re
 
 
 class Utility:
@@ -11,19 +12,20 @@ class Utility:
         except KeyError:
             return 'chrome'
 
-
-    def read_csv(self, fileName):
-        data = []
-        with open(fileName, 'r') as  csvfile:
-            reader = csv.reader(csvfile, skipinitialspace=True)
-            for row in reader:
-                data.append(row)
-            return data
-
-    def read_json(self, fileName):
-        data = []
-        with open(fileName, 'r') as  jsonfile:
+    def read_json(file_name):
+        with open(file_name, 'r') as jsonfile:
             reader = json.load(jsonfile)
-            for row in reader:
-                data.append(row)
-            return data
+            jsonfile.close()
+        return reader
+
+    def convert_string_to_float(self, str):
+        try:
+            return float(re.findall("\d+\.\d+", str)[0])
+        except:
+            return 0.00
+
+    def multiple(self, quantity, price):
+        temp_price = self.convert_string_to_float(price)
+        result = int(quantity) * temp_price
+        return result
+

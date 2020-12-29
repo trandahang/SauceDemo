@@ -7,7 +7,3 @@ class Product:
 
     def __str__(self):
         return '{"name":"%s", "desc": "%s","price":"%s"' % (self.name, self.desc, self.price)
-
-    #def __str__(self):
-        #return "name is '%s', desc is '%s', price is '%s, quantity is '%s" % (self.name, self.desc,
-                                                                              #self.price, str(self.quantity))

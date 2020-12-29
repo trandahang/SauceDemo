@@ -2,24 +2,24 @@ import os
 import unittest
 from selenium import webdriver
 import sys
+
 sys.path.append('.')
 
 from Utils.utility import Utility
 
+
 class BaseTest(unittest.TestCase):
     @classmethod
     def setUp(self):
-        #Setting up how we want Chrome to run
         utility = Utility()
         browser = utility.get_browser()
 
         self.driver = self.startBrowser(browser)
-        #self.driver = webdriver.Firefox(executable_path=r'Drivers\geckodriver.exe')
         self.driver.maximize_window()
 
     @classmethod
     def tearDown(self):
-        #To do
+        # To do
         try:
             self.driver.close()
             self.driver.quit()
@@ -47,6 +47,3 @@ class BaseTest(unittest.TestCase):
                 return webdriver.Firefox(executable_path=r'Drivers\geckodriver.exe')
         except Exception as msg:
             print('message: %s' % str(msg))
-
-
-

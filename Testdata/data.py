@@ -1,5 +1,7 @@
+
 from Objects.product import Product
 from Utils.utility import Utility
+
 
 class Data:
     BASE_URL = 'https://www.saucedemo.com/'
@@ -8,21 +10,23 @@ class Data:
     USERNAME_PROBLEM_USER = 'problem_user'
     USERNAME_PERFORMANCE_USER = 'performance_glitch_user'
     PASSWORD = 'secret_sauce'
-    BROWSER = 'ff'
+    BROWSER = 'Chrome'
 
-    #DATA_JSON_FILE = './Testdata/products.json'
-    PRODUCT_JSON_FILE = '/Testdata/products.json'
+    PRODUCT_FILE = 'Testdata/products.json'
 
-    #def get_account_json(self):
-        #utility = Utility()
-        #return utility.read_json(Data.DATA_JSON_FILE)
-
-    def get_product_from_json(self):
+    """def read_products_from_json(self):
         products = []
-        utility = Utility()
-        temp = utility.read_json(Data.PRODUCT_JSON_FILE)
+        with open(Data.PRODUCT_FILE) as json_file:
+            data = json.load(json_file)
+            for obj in data['products']:
+                product = Product(obj['name'], obj['desc'], obj['price'])
+                products.append(product)
+        json_file.close()"""
 
-        for obj in temp:
-            product = Product(obj['name'], obj['desc'], obj['price'])
+    def read_products_from_json(sefl):
+        products = []
+        data = Utility.read_json(Data.PRODUCT_FILE)
+        for item in data['products']:
+            product = Product(item['name'], item['desc'], item['price'])
             products.append(product)
         return products

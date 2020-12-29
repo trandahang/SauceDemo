@@ -22,10 +22,7 @@ class BasePage(object):
     def click(self, by_locator):
         message = "Click on the element with locator '{}'"
         logging.info(message.format(','.join(by_locator)))
-
         WebDriverWait(self.driver, self.timeout).until(EC.visibility_of_element_located(by_locator)).click()
-
-        # this function performs text entry of the passed in text, in a web element whose locator is passed to it.
 
     def enter_text(self, by_locator, text):
         message = "Enter value '{}' into the element with locator '{}'"
@@ -35,7 +32,7 @@ class BasePage(object):
         element.clear()
         element.send_keys(text)
 
-    def get_text(self, by_locator, timeout = 60):
+    def get_text(self, by_locator, timeout=60):
         element = WebDriverWait(self.driver, timeout).until(EC.visibility_of_element_located(by_locator))
         message = "Get text '{}' from the element with the locator '{}'"
         logging.info(message.format(element.text, ','.join(by_locator)))
@@ -45,10 +42,28 @@ class BasePage(object):
         return self.driver.current_url
 
         # this function performs click on web element whose locator is passed to it.
-
     def get_elements_size(self, locator):
         message = "Get the element size with locator '{}'"
         logging.info(message.format(','.join(locator)))
         WebDriverWait(self.driver, self.timeout).until(EC.visibility_of_element_located(locator))
         elements = self.driver.find_elements(*locator)
         return len(elements)
+
+    def is_visible(self, by_locator):
+        message = "Check the element with the locator '{}' is visible or not"
+        logging.info(message.format(','.join(by_locator)))
+        element = WebDriverWait(self.driver, self.timeout).until(EC.visibility_of_element_located(by_locator))
+        return element.is_displayed()
+
+    def is_invisible(self, by_locator):
+        message = "Check the element with the locator '{}' is visible or not"
+        logging.info(message.format(','.join(by_locator)))
+
+        flag = False
+        try:
+            element = self.driver.find_element(by_locator)
+            element.is_displayed()
+        except:
+            flag = True
+            pass
+        return flag

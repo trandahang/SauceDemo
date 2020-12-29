@@ -1,0 +1,2 @@
+def assertion():
+    return None

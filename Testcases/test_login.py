@@ -8,7 +8,7 @@ from Testcases.base_test import BaseTest
 from Objects.account import Account
 from Testdata.data import Data
 from Pages.products_page import ProductsPage
-import time
+
 
 class SauceDemoLogin1(BaseTest):
     @classmethod
@@ -59,7 +59,6 @@ class SauceDemoLogin1(BaseTest):
         account = Account(Data.USERNAME_PERFORMANCE_USER, Data.PASSWORD)
         login_page.login(account)
 
-
     @unittest.skip
     def test_login_with_invalid_username(self):
         login_page = LoginPage(self.driver)
@@ -71,6 +70,7 @@ class SauceDemoLogin1(BaseTest):
         login_page = LoginPage(self.driver)
         account = Account(Data.USERNAME_STANDARD_USER, 'Hang123')
         login_page.login(account)
+
 
 if __name__ == '__main__':
     unittest.main()
